@@ -1,0 +1,12 @@
+# Q3: (ProductType, ProductFeature1, ProductFeature2, x, y)
+###########################################################
+bsbm-inst:ProductType6021 bsbm-inst:ProductFeature143861 bsbm-inst:ProductFeature143862 228 156
+bsbm-inst:ProductType6154 bsbm-inst:ProductFeature120 bsbm-inst:ProductFeature17766 132 159
+bsbm-inst:ProductType2316 bsbm-inst:ProductFeature54986 bsbm-inst:ProductFeature54985 326 381
+bsbm-inst:ProductType5881 bsbm-inst:ProductFeature110 bsbm-inst:ProductFeature140523 32 1
+bsbm-inst:ProductType2546 bsbm-inst:ProductFeature6884 bsbm-inst:ProductFeature6881 57 498
+bsbm-inst:ProductType6794 bsbm-inst:ProductFeature19653 bsbm-inst:ProductFeature19652 334 178
+bsbm-inst:ProductType1668 bsbm-inst:ProductFeature24 bsbm-inst:ProductFeature4228 189 183
+bsbm-inst:ProductType3481 bsbm-inst:ProductFeature83039 bsbm-inst:ProductFeature9733 396 225
+bsbm-inst:ProductType3632 bsbm-inst:ProductFeature862 bsbm-inst:ProductFeature10202 217 274
+bsbm-inst:ProductType4644 bsbm-inst:ProductFeature13299 bsbm-inst:ProductFeature13318 294 215

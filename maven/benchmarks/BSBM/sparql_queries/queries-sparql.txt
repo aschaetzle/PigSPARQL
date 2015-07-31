@@ -1,0 +1,293 @@
+# Query 1
+# Find products for a given set of generic features.
+
+PREFIX bsbm-inst: <http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/>
+PREFIX bsbm: <http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/vocabulary/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+SELECT DISTINCT ?product ?label
+WHERE { 
+  ?product rdfs:label ?label .
+  ?product a %ProductType% .
+  ?product bsbm:productFeature %ProductFeature1% . 
+  ?product bsbm:productFeature %ProductFeature2% . 
+  ?product bsbm:productPropertyNumeric1 ?value1 . 
+  FILTER (?value1 > %x%) 
+}
+ORDER BY ?label
+LIMIT 10
+
+
+
+# Query 2
+# Retrieve basic information about a specific product for display purposes.
+
+PREFIX bsbm-inst: <http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/>
+PREFIX bsbm: <http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/vocabulary/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+
+SELECT ?label ?comment ?producer ?productFeature ?propertyTextual1 ?propertyTextual2 ?propertyTextual3
+ ?propertyNumeric1 ?propertyNumeric2 ?propertyTextual4 ?propertyTextual5 ?propertyNumeric4 
+WHERE {
+  %ProductXYZ% rdfs:label ?label .
+  %ProductXYZ% rdfs:comment ?comment .
+  %ProductXYZ% bsbm:producer ?p .
+  ?p rdfs:label ?producer .
+  %ProductXYZ% dc:publisher ?p . 
+  %ProductXYZ% bsbm:productFeature ?f .
+  ?f rdfs:label ?productFeature .
+  %ProductXYZ% bsbm:productPropertyTextual1 ?propertyTextual1 .
+  %ProductXYZ% bsbm:productPropertyTextual2 ?propertyTextual2 .
+  %ProductXYZ% bsbm:productPropertyTextual3 ?propertyTextual3 .
+  %ProductXYZ% bsbm:productPropertyNumeric1 ?propertyNumeric1 .
+  %ProductXYZ% bsbm:productPropertyNumeric2 ?propertyNumeric2 .
+  OPTIONAL { %ProductXYZ% bsbm:productPropertyTextual4 ?propertyTextual4 }
+  OPTIONAL { %ProductXYZ% bsbm:productPropertyTextual5 ?propertyTextual5 }
+  OPTIONAL { %ProductXYZ% bsbm:productPropertyNumeric4 ?propertyNumeric4 }
+}
+
+
+
+# Query 3
+# Find products having some specific features and not having one feature.
+
+PREFIX bsbm-inst: <http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/>
+PREFIX bsbm: <http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/vocabulary/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+SELECT ?product ?label
+WHERE {
+  ?product rdfs:label ?label .
+  ?product a %ProductType% .
+  ?product bsbm:productFeature %ProductFeature1% .
+  ?product bsbm:productPropertyNumeric1 ?p1 .
+  FILTER ( ?p1 > %x% ) 
+  ?product bsbm:productPropertyNumeric3 ?p3 .
+  FILTER (?p3 < %y% )
+  OPTIONAL { 
+    ?product bsbm:productFeature %ProductFeature2% .
+    ?product rdfs:label ?testVar
+  }
+  FILTER (!bound(?testVar)) 
+}
+ORDER BY ?label
+LIMIT 10
+
+
+
+# Query 4
+# Find products matching two different sets of features.
+
+PREFIX bsbm-inst: <http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/>
+PREFIX bsbm: <http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/vocabulary/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+SELECT DISTINCT ?product ?label ?propertyTextual
+WHERE {
+  { ?product rdfs:label ?label .
+    ?product rdf:type %ProductType% .
+    ?product bsbm:productFeature %ProductFeature1% .
+	?product bsbm:productFeature %ProductFeature2% .
+    ?product bsbm:productPropertyTextual1 ?propertyTextual .
+	?product bsbm:productPropertyNumeric1 ?p1 .
+	FILTER ( ?p1 > %x% )
+  } UNION {
+    ?product rdfs:label ?label .
+    ?product rdf:type %ProductType% .
+    ?product bsbm:productFeature %ProductFeature1% .
+	?product bsbm:productFeature %ProductFeature3% .
+    ?product bsbm:productPropertyTextual1 ?propertyTextual .
+	?product bsbm:productPropertyNumeric2 ?p2 .
+	FILTER ( ?p2> %y% ) 
+  } 
+}
+ORDER BY ?label
+OFFSET 5
+LIMIT 10
+
+
+
+# Query 5
+# Find products that are similar to a given product.
+
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX bsbm: <http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/vocabulary/>
+
+SELECT DISTINCT ?product ?productLabel
+WHERE { 
+  ?product rdfs:label ?productLabel .
+  FILTER (%ProductXYZ% != ?product)
+  %ProductXYZ% bsbm:productFeature ?prodFeature .
+  ?product bsbm:productFeature ?prodFeature .
+  %ProductXYZ% bsbm:productPropertyNumeric1 ?origProperty1 .
+  ?product bsbm:productPropertyNumeric1 ?simProperty1 .
+  FILTER (?simProperty1 < (?origProperty1 + 120) && ?simProperty1 > (?origProperty1 – 120))
+  %ProductXYZ% bsbm:productPropertyNumeric2 ?origProperty2 .
+  ?product bsbm:productPropertyNumeric2 ?simProperty2 .
+  FILTER (?simProperty2 < (?origProperty2 + 170) && ?simProperty2 > (?origProperty2 – 170))
+}
+ORDER BY ?productLabel
+LIMIT 5
+
+
+
+# Query 6
+# Find products having a label that contains a specific string. (Not used in the query mix anymore)
+
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX bsbm: <http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/vocabulary/>
+
+SELECT ?product ?label
+WHERE {
+  ?product rdfs:label ?label .
+  ?product rdf:type bsbm:Product .
+  FILTER regex(?label, "%word1%")
+}
+
+
+
+# Query 7
+# Retrieve in-depth information about a specific product including offers and reviews.
+
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rev: <http://purl.org/stuff/rev#>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX bsbm: <http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/vocabulary/>
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+
+SELECT ?productLabel ?offer ?price ?vendor ?vendorTitle ?review ?revTitle 
+ ?reviewer ?revName ?rating1 ?rating2
+WHERE { 
+  %ProductXYZ% rdfs:label ?productLabel .
+  OPTIONAL {
+    ?offer bsbm:product %ProductXYZ% .
+    ?offer bsbm:price ?price .
+    ?offer bsbm:vendor ?vendor .
+    ?vendor rdfs:label ?vendorTitle .
+    ?vendor bsbm:country <http://downlode.org/rdf/iso-3166/countries#DE> .
+    ?offer dc:publisher ?vendor . 
+    ?offer bsbm:validTo ?date .
+    FILTER (?date > %currentDate% )
+  }
+  OPTIONAL {
+    ?review bsbm:reviewFor %ProductXYZ% .
+    ?review rev:reviewer ?reviewer .
+    ?reviewer foaf:name ?revName .
+    ?review dc:title ?revTitle .
+    OPTIONAL { ?review bsbm:rating1 ?rating1 . }
+    OPTIONAL { ?review bsbm:rating2 ?rating2 . } 
+  }
+}
+
+
+
+# Query 8
+# Give me recent reviews in English for a specific product.
+
+PREFIX bsbm: <http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/vocabulary/>
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX rev: <http://purl.org/stuff/rev#>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+
+SELECT ?title ?text ?reviewDate ?reviewer ?reviewerName ?rating1 ?rating2 ?rating3 ?rating4 
+WHERE { 
+  ?review bsbm:reviewFor %ProductXYZ% .
+  ?review dc:title ?title .
+  ?review rev:text ?text .
+  FILTER langMatches( lang(?text), "EN" ) 
+  ?review bsbm:reviewDate ?reviewDate .
+  ?review rev:reviewer ?reviewer .
+  ?reviewer foaf:name ?reviewerName .
+  OPTIONAL { ?review bsbm:rating1 ?rating1 . }
+  OPTIONAL { ?review bsbm:rating2 ?rating2 . }
+  OPTIONAL { ?review bsbm:rating3 ?rating3 . }
+  OPTIONAL { ?review bsbm:rating4 ?rating4 . }
+}
+ORDER BY DESC(?reviewDate)
+LIMIT 20
+
+
+
+# Query 9
+# Get information about a reviewer.
+
+PREFIX rev: <http://purl.org/stuff/rev#>
+
+DESCRIBE ?x
+WHERE { %ReviewXYZ% rev:reviewer ?x }
+
+
+
+# Query 10
+# Get offers for a given product which fulfill specific requirements.
+
+PREFIX bsbm: <http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/vocabulary/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+
+SELECT DISTINCT ?offer ?price
+WHERE {
+  ?offer bsbm:product %ProductXYZ% .
+  ?offer bsbm:vendor ?vendor .
+  ?offer dc:publisher ?vendor .
+  ?vendor bsbm:country <http://downlode.org/rdf/iso-3166/countries#US> .
+  ?offer bsbm:deliveryDays ?deliveryDays .
+  FILTER (?deliveryDays <= 3)
+  ?offer bsbm:price ?price .
+  ?offer bsbm:validTo ?date .
+  FILTER (?date > %currentDate% )
+}
+ORDER BY xsd:double(str(?price))
+LIMIT 10
+
+
+
+# Query 11
+# Get all information about an offer.
+
+SELECT ?property ?hasValue ?isValueOf
+WHERE {
+  { %OfferXYZ% ?property ?hasValue }
+  UNION
+  { ?isValueOf ?property %OfferXYZ% }
+}
+
+
+
+# Query 12
+# Export information about an offer into another schemata.
+
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rev: <http://purl.org/stuff/rev#>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX bsbm: <http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/vocabulary/>
+PREFIX bsbm-export: <http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/vocabulary/export/>
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+
+CONSTRUCT {
+  %OfferXYZ% bsbm-export:product ?productURI .
+  %OfferXYZ% bsbm-export:productlabel ?productlabel .
+  %OfferXYZ% bsbm-export:vendor ?vendorname .
+  %OfferXYZ% bsbm-export:vendorhomepage ?vendorhomepage . 
+  %OfferXYZ% bsbm-export:offerURL ?offerURL .
+  %OfferXYZ% bsbm-export:price ?price .
+  %OfferXYZ% bsbm-export:deliveryDays ?deliveryDays .
+  %OfferXYZ% bsbm-export:validuntil ?validTo
+} 
+WHERE {
+  %OfferXYZ% bsbm:product ?productURI .
+  ?productURI rdfs:label ?productlabel .
+  %OfferXYZ% bsbm:vendor ?vendorURI .
+  ?vendorURI rdfs:label ?vendorname .
+  ?vendorURI foaf:homepage ?vendorhomepage .
+  %OfferXYZ% bsbm:offerWebpage ?offerURL .
+  %OfferXYZ% bsbm:price ?price .
+  %OfferXYZ% bsbm:deliveryDays ?deliveryDays .
+  %OfferXYZ% bsbm:validTo ?validTo
+}

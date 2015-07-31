@@ -1,0 +1,8 @@
+# Get all information about an offer.
+
+SELECT ?property ?hasValue ?isValueOf
+WHERE {
+  { <http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/dataFromVendor23/Offer41901> ?property ?hasValue }
+  UNION
+  { ?isValueOf ?property <http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/dataFromVendor23/Offer41901> }
+}

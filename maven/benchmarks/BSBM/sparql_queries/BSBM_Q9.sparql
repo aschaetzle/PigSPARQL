@@ -1,0 +1,7 @@
+# Query 9
+# Get information about a reviewer.
+
+PREFIX rev: <http://purl.org/stuff/rev#>
+
+DESCRIBE ?x
+WHERE { %ReviewXYZ% rev:reviewer ?x }

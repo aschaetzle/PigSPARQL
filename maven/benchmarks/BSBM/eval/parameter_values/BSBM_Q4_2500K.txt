@@ -1,0 +1,12 @@
+# Q4: (ProductType, ProductFeature1, ProductFeature2, ProductFeature3, x, y)
+############################################################################
+bsbm-inst:ProductType1617 bsbm-inst:ProductFeature38392 bsbm-inst:ProductFeature4103 bsbm-inst:ProductFeature38385 137 93
+bsbm-inst:ProductType1753 bsbm-inst:ProductFeature4527 bsbm-inst:ProductFeature4522 bsbm-inst:ProductFeature370 250 35
+bsbm-inst:ProductType5607 bsbm-inst:ProductFeature1427 bsbm-inst:ProductFeature16112 bsbm-inst:ProductFeature1430 80 253
+bsbm-inst:ProductType1500 bsbm-inst:ProductFeature20 bsbm-inst:ProductFeature35680 bsbm-inst:ProductFeature13 168 325
+bsbm-inst:ProductType4737 bsbm-inst:ProductFeature13590 bsbm-inst:ProductFeature79 bsbm-inst:ProductFeature13591 278 53
+bsbm-inst:ProductType4812 bsbm-inst:ProductFeature1205 bsbm-inst:ProductFeature114923 bsbm-inst:ProductFeature114923 37 206
+bsbm-inst:ProductType4760 bsbm-inst:ProductFeature113694 bsbm-inst:ProductFeature13648 bsbm-inst:ProductFeature13668 43 122
+bsbm-inst:ProductType3184 bsbm-inst:ProductFeature8861 bsbm-inst:ProductFeature8863 bsbm-inst:ProductFeature748 283 52
+bsbm-inst:ProductType2883 bsbm-inst:ProductFeature49 bsbm-inst:ProductFeature7912 bsbm-inst:ProductFeature7926 142 81
+bsbm-inst:ProductType1071 bsbm-inst:ProductFeature25289 bsbm-inst:ProductFeature25290 bsbm-inst:ProductFeature25292 28 121

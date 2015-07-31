@@ -1,0 +1,6 @@
+# Get information about a reviewer.
+
+PREFIX rev: <http://purl.org/stuff/rev#>
+
+DESCRIBE ?x
+WHERE { <http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/dataFromRatingSite2/Review10961> rev:reviewer ?x }
