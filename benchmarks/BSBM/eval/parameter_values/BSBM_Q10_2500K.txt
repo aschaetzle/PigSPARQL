@@ -1,0 +1,12 @@
+# Q10: (ProductXYZ, currentDate)
+################################
+bsbm-inst:dataFromProducer26596/Product1346890 2008-06-20T00:00:00
+bsbm-inst:dataFromProducer39032/Product1974714 2008-06-20T00:00:00
+bsbm-inst:dataFromProducer4162/Product210180 2008-06-20T00:00:00
+bsbm-inst:dataFromProducer29267/Product1483491 2008-06-20T00:00:00
+bsbm-inst:dataFromProducer37020/Product1873794 2008-06-20T00:00:00
+bsbm-inst:dataFromProducer36322/Product1839105 2008-06-20T00:00:00
+bsbm-inst:dataFromProducer8597/Product436273 2008-06-20T00:00:00
+bsbm-inst:dataFromProducer26505/Product1342035 2008-06-20T00:00:00
+bsbm-inst:dataFromProducer9040/Product458717 2008-06-20T00:00:00
+bsbm-inst:dataFromProducer24178/Product1222453 2008-06-20T00:00:00

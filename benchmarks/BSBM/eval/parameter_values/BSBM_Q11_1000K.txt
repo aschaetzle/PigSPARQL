@@ -1,0 +1,12 @@
+# Q11: (OfferXYZ)
+#################
+bsbm-inst:dataFromVendor8019/Offer15909801
+bsbm-inst:dataFromVendor3232/Offer6344901
+bsbm-inst:dataFromVendor2663/Offer5263479
+bsbm-inst:dataFromVendor7799/Offer15484955
+bsbm-inst:dataFromVendor2046/Offer4037208
+bsbm-inst:dataFromVendor8617/Offer17093343
+bsbm-inst:dataFromVendor9078/Offer18017836
+bsbm-inst:dataFromVendor6356/Offer12595012
+bsbm-inst:dataFromVendor2762/Offer5448052
+bsbm-inst:dataFromVendor4081/Offer8052758

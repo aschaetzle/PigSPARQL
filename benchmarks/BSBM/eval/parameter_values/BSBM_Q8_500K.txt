@@ -1,0 +1,11 @@
+# Q8: (ProductXYZ)
+bsbm-inst:dataFromProducer6375/Product323755
+bsbm-inst:dataFromProducer694/Product34230
+bsbm-inst:dataFromProducer3732/Product188334
+bsbm-inst:dataFromProducer2198/Product110596
+bsbm-inst:dataFromProducer4607/Product233031
+bsbm-inst:dataFromProducer2442/Product123501
+bsbm-inst:dataFromProducer3201/Product161961
+bsbm-inst:dataFromProducer2375/Product119827
+bsbm-inst:dataFromProducer3675/Product185380
+bsbm-inst:dataFromProducer2648/Product133848

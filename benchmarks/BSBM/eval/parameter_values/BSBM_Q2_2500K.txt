@@ -1,0 +1,12 @@
+# Q2: (ProductXYZ)
+##################
+bsbm-inst:dataFromProducer46643/Product2361272
+bsbm-inst:dataFromProducer40995/Product2074194
+bsbm-inst:dataFromProducer6421/Product326237
+bsbm-inst:dataFromProducer9230/Product468341
+bsbm-inst:dataFromProducer34195/Product1731056
+bsbm-inst:dataFromProducer49054/Product2484317
+bsbm-inst:dataFromProducer716/Product35398
+bsbm-inst:dataFromProducer44100/Product2233390
+bsbm-inst:dataFromProducer27501/Product1393459
+bsbm-inst:dataFromProducer15975/Product808075

@@ -1,0 +1,9 @@
+# Query 11
+# Get all information about an offer.
+
+SELECT ?property ?hasValue ?isValueOf
+WHERE {
+  { %OfferXYZ% ?property ?hasValue }
+  UNION
+  { ?isValueOf ?property %OfferXYZ% }
+}
